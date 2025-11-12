@@ -1,0 +1,174 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // Change to "postgresql" for production
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// PRODUCTS
+// ============================================
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  category    String
+  tags        String   // JSON string array
+  
+  // Images (JSON string array)
+  images      String   @default("[]")
+  
+  // Shopee Data
+  shopeeUrl           String?
+  shopeePrice         Int?
+  shopeeOriginalPrice Int?
+  shopeeDiscount      Int?
+  shopeeRating        Float?
+  shopeeReviewCount   Int?
+  shopeeSold          Int?
+  shopeeShipping      String?
+  shopeeAffiliateLink String?
+  shopeeCommission    Float   @default(0.03)
+  
+  // TikTok Data
+  tiktokProductId     String?
+  tiktokPrice         Int?
+  tiktokOriginalPrice Int?
+  tiktokDiscount      Int?
+  tiktokRating        Float?
+  tiktokReviewCount   Int?
+  tiktokSold          Int?
+  tiktokShipping      String?
+  tiktokAffiliateLink String?
+  tiktokCommission    Float?
+  
+  // AI Analysis (JSON strings)
+  aiHighlights       String   @default("[]")
+  aiConcerns         String   @default("[]")
+  aiBestPlatform     String?
+  aiRecommendation   String?
+  
+  // Specifications (JSON string)
+  specifications     String   @default("{}")
+  
+  // Stats
+  views           Int      @default(0)
+  clicks          Int      @default(0)
+  shopeeClicks    Int      @default(0)
+  tiktokClicks    Int      @default(0)
+  conversions     Int      @default(0)
+  
+  // Metadata
+  status      String   @default("active") // active, inactive, draft
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  lastScraped DateTime?
+  
+  // Relations
+  reviews     Review[]
+}
+
+// ============================================
+// REVIEWS
+// ============================================
+
+model Review {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  platform  String   // "shopee" or "tiktok"
+  rating    Int      // 1-5
+  text      String
+  author    String
+  date      String
+  verified  Boolean  @default(false)
+  helpful   Int      @default(0)
+  
+  // Review images (JSON string array)
+  images    String   @default("[]")
+  
+  createdAt DateTime @default(now())
+  
+  @@index([productId])
+  @@index([platform])
+}
+
+// ============================================
+// ANALYTICS
+// ============================================
+
+model Analytics {
+  id        String   @id @default(cuid())
+  date      DateTime @default(now())
+  
+  // Daily stats
+  views            Int   @default(0)
+  clicks           Int   @default(0)
+  
+  // Platform breakdown
+  shopeeClicks     Int   @default(0)
+  tiktokClicks     Int   @default(0)
+  
+  // Revenue estimation
+  estimatedRevenue Float @default(0)
+  
+  // Product breakdown (JSON string)
+  topProducts      String @default("[]")
+  
+  @@index([date])
+}
+
+// ============================================
+// TWITTER POSTS (untuk tracking)
+// ============================================
+
+model TwitterPost {
+  id           String   @id @default(cuid())
+  productId    String
+  
+  tweetId      String?  // Twitter tweet ID
+  content      String
+  mediaUrls    String   @default("[]") // JSON array
+  
+  // Stats
+  impressions  Int      @default(0)
+  engagements  Int      @default(0)
+  linkClicks   Int      @default(0)
+  
+  // Schedule
+  scheduledAt  DateTime?
+  postedAt     DateTime?
+  status       String   @default("draft") // draft, scheduled, posted, failed
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([productId])
+  @@index([status])
+}
+
+// ============================================
+// SCRAPE LOGS (untuk monitoring)
+// ============================================
+
+model ScrapeLog {
+  id          String   @id @default(cuid())
+  platform    String   // "shopee" or "tiktok"
+  url         String
+  status      String   // "success", "failed"
+  error       String?
+  duration    Int?     // milliseconds
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([platform])
+  @@index([status])
+  @@index([createdAt])
+}
