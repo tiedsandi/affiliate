@@ -2,91 +2,148 @@
 
 ## 🎯 MVP Goals
 
-Build a functional affiliate website in **4-6 weeks** with:
+Build a functional affiliate website in **6 weeks** with:
 - ✅ 50+ curated products (Shopee + TikTok)
-- ✅ Price comparison feature
-- ✅ AI-powered insights
+- ✅ Price comparison feature (KILLER FEATURE)
+- ✅ AI-powered review analysis
 - ✅ Basic admin dashboard
-- ✅ Auto-scraping (daily)
-- ✅ Twitter integration (manual posting)
+- ✅ Auto-scraping (Shopee + TikTok)
+- ✅ Twitter integration
 
 **Launch Target**: End of December 2025
+
+**Strategy**: **Backend First!** Fokus scraping data dulu, UI menyesuaikan dengan payload.
 
 ---
 
 ## 📅 Timeline
 
-### Week 1: Foundation (Nov 15-21)
-**Goal**: Setup project structure, database, basic UI
+### Week 1-2: Backend Foundation (Nov 15-28) 🔥 PRIORITAS
+**Goal**: Setup database & scraping system
 
 **Tasks**:
 - [x] Project setup (Next.js + dependencies) ✅
 - [x] Database schema design ✅
 - [x] Prisma setup + migrations ✅
-- [ ] Basic layout components (Header, Footer)
-- [ ] Homepage wireframe
-- [ ] Product card component
-- [ ] Setup Tailwind + shadcn/ui
-- [ ] Environment variables configuration
+- [x] Seed database with sample data ✅
+- [ ] **Shopee Scraper** (Puppeteer) 🔥
+  - Parse product name, price, rating, reviews
+  - Handle pagination & error
+  - Save to database
+- [ ] **TikTok API Integration** 🔥
+  - Get product data via API
+  - Parse & normalize data
+  - Save to database
+- [ ] Test scraping dengan real URLs
+- [ ] API endpoint: POST /api/scrape/shopee
+- [ ] API endpoint: POST /api/scrape/tiktok
 
-**Deliverable**: Empty website with navigation and basic styling
-
----
-
-### Week 2: Core Features - Public Site (Nov 22-28)
-**Goal**: Users can view products and compare prices
-
-**Tasks**:
-- [ ] Product listing page (with pagination)
-- [ ] Product detail page
-- [ ] Price comparison UI (Shopee vs TikTok)
-- [ ] Category filtering
-- [ ] Basic search (text-based)
-- [ ] Affiliate link tracking (click counter)
-- [ ] Responsive design (mobile-first)
-
-**Deliverable**: Functional public website (read-only)
+**Deliverable**: Working scrapers yang bisa ambil data dari Shopee & TikTok, save ke database
 
 ---
 
-### Week 3: Admin Dashboard (Nov 29 - Dec 5)
-**Goal**: Admin can add and manage products
+### Week 3: Backend - API Routes (Nov 29 - Dec 5)
+**Goal**: Admin bisa manage products via API
 
 **Tasks**:
-- [ ] Admin authentication (simple secret-based)
+- [ ] GET /api/products (with filters)
+- [ ] GET /api/products/[id]
+- [ ] POST /api/products (create)
+- [ ] PUT /api/products/[id] (update)
+- [ ] DELETE /api/products/[id]
+- [ ] POST /api/products/bulk (bulk import)
+- [ ] Basic admin authentication
+- [ ] Analytics tracking API
+
+**Deliverable**: Complete CRUD API untuk products
+
+---
+
+### Week 4: Admin Dashboard Frontend (Dec 6-12)
+**Goal**: Admin UI untuk manage products
+
+**Tasks**:
+- [ ] Admin authentication UI
 - [ ] Admin layout + navigation
-- [ ] Dashboard home (stats overview)
-- [ ] Add product form (manual input)
-- [ ] Product list (CRUD operations)
+- [ ] Dashboard home (stats cards)
+- [ ] Add product form (with scraper)
+- [ ] Product list table (CRUD)
 - [ ] Edit product page
-- [ ] Delete product (soft delete)
-- [ ] Bulk actions (activate/deactivate)
+- [ ] Bulk import UI
+- [ ] Analytics charts (basic)
 
-**Deliverable**: Admin can manage product catalog
+**Deliverable**: Admin bisa manage products via web UI
 
 ---
 
-### Week 4: Web Scraping (Dec 6-12)
-**Goal**: Auto-scrape product data from Shopee and TikTok
+### Week 5: AI Integration (Dec 13-19)
+**Goal**: AI analyzes reviews and generates content
 
 **Tasks**:
-- [ ] Puppeteer setup
-- [ ] Shopee scraper (product page)
-  - Name, price, images, rating, reviews, specs
-- [ ] TikTok scraper (product page)
-  - Same as Shopee
-- [ ] Scraper API endpoints
-- [ ] Add product via URL (admin)
-- [ ] Auto-refresh prices (cron job)
-- [ ] Scrape logging (success/failure tracking)
-- [ ] Error handling + retry logic
+- [ ] Setup Gemini AI API
+- [ ] Review analysis function
+  - Extract highlights (pros)
+  - Extract concerns (cons)
+  - Platform recommendation
+- [ ] Content generator function
+  - Tweet generator (3 variations)
+  - Blog post ideas
+- [ ] AI API endpoints
+- [ ] Integrate AI with scraper workflow
 
-**Deliverable**: Admin can add products by pasting URLs
+**Deliverable**: AI auto-analyze setiap produk baru
 
 ---
 
-### Week 5: AI Features (Dec 13-19)
-**Goal**: AI analyzes reviews and generates content
+### Week 6: Frontend Integration & Launch (Dec 20-26)
+**Goal**: Connect UI dengan Backend, polish, launch
+
+**Tasks**:
+- [ ] Connect product listing dengan API
+- [ ] Connect product detail dengan API
+- [ ] Real data integration (no dummy data)
+- [ ] Twitter API setup
+- [ ] Manual tweet posting UI
+- [ ] Analytics dashboard
+- [ ] SEO optimization (meta tags)
+- [ ] Performance optimization
+- [ ] Deploy to Vercel
+- [ ] Domain setup (opsional)
+
+**Deliverable**: Live website ready to generate affiliate revenue! 🚀
+
+---
+
+## 🎯 Success Criteria
+
+### Technical
+- ✅ Scraper runs without errors
+- ✅ Database has 50+ products
+- ✅ AI analysis accuracy > 80%
+- ✅ Page load time < 2s
+- ✅ Mobile responsive
+
+### Business
+- ✅ 100+ affiliate link clicks/month
+- ✅ 1000+ page views/month
+- ✅ Rp 1-5 juta revenue (3 months)
+
+---
+
+## 🚧 Post-MVP (Week 7+)
+
+### Phase 2 (Optional)
+- [ ] Auto-posting scheduler (Twitter bot)
+- [ ] Email alerts (price drops)
+- [ ] Chrome extension (price tracker)
+- [ ] More platforms (Tokopedia, Lazada)
+
+### Phase 3 (Future)
+- [ ] User accounts & wishlists
+- [ ] Community features
+- [ ] Mobile app
+- [ ] Affiliate program for users
+
 
 **Tasks**:
 - [ ] OpenAI API setup

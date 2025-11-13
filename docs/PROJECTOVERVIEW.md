@@ -39,7 +39,7 @@ Membuat platform affiliate marketing yang memudahkan user menemukan dan membeli 
 ## 🚀 Success Metrics
 
 ### MVP Phase (3 bulan pertama)
-- [ ] 100+ produk terkurasi
+- [ ] 50-100 produk terkurasi
 - [ ] 1000+ monthly visitors
 - [ ] 100+ affiliate clicks/month
 - [ ] Rp 1-5 juta/bulan revenue
@@ -48,6 +48,46 @@ Membuat platform affiliate marketing yang memudahkan user menemukan dan membeli 
 - [ ] 500+ produk
 - [ ] 10K+ monthly visitors
 - [ ] 1K+ affiliate clicks/month
+- [ ] Rp 10-50 juta/bulan revenue
+
+## 🎯 Development Strategy
+
+### Backend First Approach 🔥
+**Kenapa?** UI harus menyesuaikan dengan struktur data dari scraping.
+
+**Prioritas:**
+1. **Week 1-2**: Shopee & TikTok scrapers
+2. **Week 3**: API routes (CRUD)
+3. **Week 4**: Admin dashboard
+4. **Week 5**: AI integration
+5. **Week 6**: Frontend integration & launch
+
+### Data-Driven Design
+- Scrape dulu, lihat struktur data
+- Design UI based on payload
+- Optimize untuk conversion (bukan aesthetic)
+
+## 🎨 Unique Selling Points (USP)
+
+1. **Dual Platform Comparison** 
+   - First mover: Shopee vs TikTok Shop
+   - Real-time price comparison
+   - Show actual savings
+
+2. **AI-Powered Insights**
+   - Automated review analysis
+   - Smart platform recommendation
+   - Content generation
+
+3. **Simplicity**
+   - No bullshit, straight to the point
+   - Fast loading, mobile-first
+   - Clear affiliate disclosure
+
+4. **Transparency**
+   - Honest pros & cons
+   - No fake scarcity
+   - Real user reviews
 - [ ] Rp 10-50 juta/bulan revenue
 
 ## 🎨 Unique Selling Points (USP)

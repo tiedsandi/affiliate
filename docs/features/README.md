@@ -1,150 +1,216 @@
 # Features Documentation
 
-## 🌐 Public Website Features
+> **Note**: Fokus MVP adalah **Backend First**. UI menyesuaikan dengan payload scraping.
+
+---
+
+## 🌐 Public Website Features (Simple MVP)
 
 ### Homepage
 - **Hero Section**
-  - AI-powered search bar
-  - Natural language queries
-  - Quick filter tags
+  - Search bar (text-based)
+  - Quick category tags
   
-- **Featured Products**
-  - Trending products carousel
-  - Flash sale badges
-  - Platform availability indicators
+- **Featured Products Grid**
+  - Trending/newest products
+  - Platform badges (Shopee/TikTok)
+  - Quick price comparison
   
 - **Category Grid**
   - Visual category cards
   - Product count per category
-  - Quick navigation
   
-- **Stats Bar**
-  - Total users
-  - Average rating
-  - Products curated
+- **Simple Stats Bar**
+  - Total products
+  - Shopee vs TikTok count
 
-### Product Detail Page
+### Product Detail Page (KILLER FEATURE!)
 - **Image Gallery**
-  - Multiple product images
-  - Zoom on hover
-  - Thumbnail navigation
+  - Multiple product images from scraping
+  - Simple carousel
 
-- **Price Comparison** (KILLER FEATURE!)
+- **Price Comparison** 🔥
   - Side-by-side: Shopee vs TikTok Shop
-  - Discount calculation
-  - Savings indicator
-  - Best deal recommendation (AI)
-  - Commission transparency
+  - Show price, discount, rating, sold count
+  - Savings calculator
+  - Best deal indicator (AI recommendation)
+  - Affiliate link buttons
 
 - **AI Analysis**
-  - Highlights (pros)
-  - Concerns (cons)
-  - Overall recommendation
-  - Extracted from reviews
+  - Highlights (extracted from reviews)
+  - Concerns (extracted from reviews)
+  - Platform recommendation with reason
 
 - **Reviews Section**
+  - Top reviews from both platforms
   - Filter by platform
-  - Verified buyer badge
-  - Helpful count
   - Rating breakdown
 
-- **Specifications**
-  - Product specs table
-  - Key features
+- **Specifications Table**
+  - Product specs (scraped data)
 
-- **Call-to-Action**
-  - Direct link to Shopee (affiliate)
-  - Direct link to TikTok Shop (affiliate)
-  - Share buttons (Twitter, WhatsApp)
-  - Save to favorites (localStorage)
-
-### Search & Explore Page
-- **AI-Powered Search**
-  - Natural language processing
-  - "powerbank awet budget 200rb" → results
-  - Smart filters auto-applied
-
-- **Advanced Filters**
-  - Price range (slider)
-  - Rating minimum
+### Product Listing Page
+- **Filters**
   - Category
-  - Platform availability
-  - Promo (discount %, free shipping)
-  - Tags
-
-- **Sort Options**
-  - Best match (AI ranking)
-  - Price: low to high
-  - Rating: high to low
-  - Most sold
-  - Newest
-
-### Comparison Tool
-- **Side-by-Side Compare**
-  - Add up to 3 products
-  - Compare specs
-  - Compare prices across platforms
-  - AI recommendation: which to buy
-
-### Collections/Blog
-- **Curated Lists**
-  - "10 Gadget Terbaik di Bawah 500rb"
-  - "Must-Have WFH Essentials"
-  - "Gift Ideas untuk Pacar"
+  - Platform (Shopee/TikTok/Both)
+  - Sort by: Price, Rating, Newest
   
-- **SEO Content**
-  - Tips & guides
-  - Buying guides
-  - Product reviews
-  - Embedded affiliate links
+- **Product Grid**
+  - Product cards with basic info
+  - Quick view price comparison
+  - Pagination
 
-### Other Features
-- **Dark Mode Toggle**
-- **Responsive Design** (mobile-first)
-- **Fast Loading** (optimized images, lazy load)
-- **PWA Ready** (installable)
+### Search
+- Simple text search (name, category)
+- No advanced NLP (keep it simple for MVP)
 
 ---
 
-## 🔧 Admin Dashboard Features
+## 🛠️ Admin Dashboard Features
 
-### Dashboard Overview
+### Dashboard Home
 - **Stats Cards**
-  - Total views (today, week, month, all-time)
-  - Affiliate clicks (Shopee + TikTok)
-  - Estimated revenue (based on clicks × commission)
-  - CTR (Click-Through Rate)
-  - Conversion rate estimation
-  - Total products, active products
-  - Average rating
-
-- **Charts & Graphs**
-  - Line chart: Traffic & clicks over time
-  - Pie chart: Platform breakdown (Shopee vs TikTok)
-  - Bar chart: Category performance
-  - Heatmap: Best posting times
-  - Trend indicators (↑ increase, ↓ decrease)
-
-- **Recent Activity Feed**
-  - Recent tweets posted
-  - New products added
-  - Top performing products (last 24h)
-  - Failed scrapes (if any)
-  - Latest affiliate clicks
-
-- **Quick Actions**
-  - ➕ Add New Product
-  - 🔄 Refresh All Prices
-  - 📝 Generate Tweet
-  - 📊 View Full Analytics
+  - Total products
+  - Active/Inactive count
+  - Total views/clicks
+  - Estimated revenue
+  
+- **Recent Activity**
+  - Recently added products
+  - Failed scrapes
 
 ### Product Management
+- **Add Product via URL**
+  - Input Shopee URL → auto-scrape
+  - Input TikTok URL → auto-scrape
+  - Auto-fill form with scraped data
+  - Option to edit before save
+  
+- **Product List Table**
+  - Search & filter
+  - Sort by date, views, clicks
+  - Bulk actions (activate/deactivate/delete)
+  - Quick edit inline
+  - Status indicator (active/inactive)
+  
+- **Edit Product**
+  - Update product info
+  - Re-scrape data (refresh prices)
+  - Regenerate AI analysis
+  - View analytics
 
-#### Add Product
-- **Method 1: Shopee URL** (Recommended)
-  - Paste Shopee product URL
-  - Auto-scrape: name, price, images, specs, reviews
-  - Input affiliate link (manual or auto-generate)
+### Content Generator (AI)
+- **Tweet Generator**
+  - Select product
+  - Generate tweet (3 variations)
+  - Preview with character count
+  - Copy to clipboard or post directly (manual for MVP)
+  
+- **Content Ideas**
+  - AI suggest content themes
+  - Product bundling ideas
+
+### Analytics
+- **Overview Stats**
+  - Total views, clicks, revenue
+  - Date range selector
+  
+- **Product Performance**
+  - Top performing products
+  - Views vs clicks comparison
+  - Revenue per product
+  
+- **Platform Comparison**
+  - Shopee vs TikTok clicks
+  - Commission comparison
+
+### Settings
+- **API Keys**
+  - Gemini AI API key
+  - Twitter API keys (future)
+  
+- **Scraping Settings**
+  - Auto-refresh interval
+  - Max retries
+
+---
+
+## 🤖 AI Features
+
+### Review Analysis (Gemini AI)
+- **Input**: Array of reviews (from scraping)
+- **Process**:
+  - Sentiment analysis
+  - Extract positive points (highlights)
+  - Extract negative points (concerns)
+  - Identify key themes
+- **Output**: 
+  - `highlights`: ["Point 1", "Point 2", ...]
+  - `concerns`: ["Issue 1", "Issue 2", ...]
+  - `recommendation`: "shopee" or "tiktok" + reason
+
+### Platform Recommendation
+- **Factors**:
+  - Price difference
+  - Rating difference
+  - Review sentiment
+  - Shipping cost
+  - Commission (for admin view)
+- **Output**: Best platform + explanation
+
+### Content Generation
+- **Tweet Generator**
+  - Input: Product data
+  - Output: Engaging tweet (max 280 chars)
+  - Includes: product name, highlight, price, link
+  
+---
+
+## ❌ Features NOT in MVP (Removed)
+
+### Removed untuk simplicity:
+- ❌ Advanced NLP search
+- ❌ Comparison tool (3 products side-by-side)
+- ❌ Blog/Collections pages
+- ❌ Wishlist feature
+- ❌ User accounts
+- ❌ Auto-posting scheduler (manual untuk MVP)
+- ❌ PWA / Installable app
+- ❌ Dark mode toggle
+- ❌ Social share buttons (just focus on Twitter)
+- ❌ Chrome extension
+- ❌ Price drop alerts
+
+### Bisa ditambah Post-MVP:
+- Twitter auto-posting bot
+- Email/Telegram notifications
+- More platforms (Tokopedia, Lazada)
+- User reviews & ratings
+- Community features
+
+---
+
+## 🎯 Core MVP Features (Final List)
+
+### Public Site:
+1. ✅ Homepage (hero + product grid)
+2. ✅ Product listing (with filters)
+3. ✅ Product detail (price comparison + AI analysis)
+4. ✅ Simple search
+
+### Admin Dashboard:
+5. ✅ Stats dashboard
+6. ✅ Add product via URL (scraper)
+7. ✅ Product CRUD
+8. ✅ AI content generator
+9. ✅ Basic analytics
+
+### Backend:
+10. ✅ Shopee scraper
+11. ✅ TikTok scraper
+12. ✅ Gemini AI integration
+13. ✅ API routes (CRUD)
+14. ✅ Database (Prisma + PostgreSQL)
   - Select category & add tags
   - Click "Analyze with AI" → get highlights/concerns
   - Save as draft or publish immediately
